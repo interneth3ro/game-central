@@ -8,6 +8,20 @@ export const navItems: INavData[] = [
   },
   {
     title: true,
+    name: 'Games'
+  },
+  {
+    name: 'Coin Toss',
+    url: '/',
+    iconComponent: { name: 'cil-opentype' }
+  },
+  {
+    name: 'Bingo',
+    url: '/',
+    iconComponent: { name: 'cil-grid' }
+  },
+  {
+    title: true,
     name: 'Theme'
   },
   {
