@@ -1,10 +1,17 @@
 import { NgModule } from '@angular/core';
 import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { NgScrollbarModule } from 'ngx-scrollbar';
+
+// Import NGRX
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthStoreModule } from './store/auth/auth-store.module';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 // Import routing module
 import { AppRoutingModule } from './app-routing.module';
@@ -38,6 +45,8 @@ import {
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+
 const APP_CONTAINERS = [
   DefaultFooterComponent,
   DefaultHeaderComponent,
@@ -56,6 +65,7 @@ const APP_CONTAINERS = [
     DropdownModule,
     GridModule,
     HeaderModule,
+    HttpClientModule,
     SidebarModule,
     IconModule,
     NavModule,
@@ -72,12 +82,21 @@ const APP_CONTAINERS = [
     BadgeModule,
     ListGroupModule,
     CardModule,
-    NgScrollbarModule
+    NgScrollbarModule,
+    StoreModule.forRoot(),
+    EffectsModule.forRoot(),
+    StoreDevtoolsModule.instrument({}),
+    AuthStoreModule,
   ],
   providers: [
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
     },
     IconSetService,
     Title
