@@ -32,7 +32,7 @@ const routes: Routes = [
         path: 'coin-toss',
         canActivate: [authGuard],
         loadChildren: () =>
-          import('./components/coin-toss/coin-toss.module').then(
+          import('./games/coin-toss/coin-toss.module').then(
             (m) => m.CoinTossModule
           ),
       },
@@ -40,7 +40,7 @@ const routes: Routes = [
         path: 'bingo',
         canActivate: [authGuard],
         loadChildren: () =>
-          import('./components/bingo/bingo.module').then((m) => m.BingoModule),
+          import('./games/bingo/bingo.module').then((m) => m.BingoModule),
       },
       {
         path: 'theme',
