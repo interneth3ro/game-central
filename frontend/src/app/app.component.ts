@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { IconSetService } from '@coreui/icons-angular';
 import { iconSubset } from './icons/icon-subset';
 import { Title } from '@angular/platform-browser';
-import * as actions from './store/auth/auth.actions';
+import * as actions from './store/auth/actions';
 
 @Component({
   selector: 'app-root',
@@ -27,9 +27,13 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     if (localStorage.getItem('profile')) {
-      this.store.dispatch(actions.loginUser({ payload: JSON.parse(localStorage.getItem('profile') || '') }));
+      this.store.dispatch(
+        actions.loginUser({
+          payload: JSON.parse(localStorage.getItem('profile') || ''),
+        })
+      );
     }
-    
+
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
         return;

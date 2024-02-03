@@ -2,6 +2,7 @@
   <c-container>
     <c-row class="justify-content-center">
       <c-col md="8">
+        <c-alert color="danger" *ngIf="loginFailed">Invalid credentials</c-alert>
         <c-card-group>
           <c-card class="p-4">
             <c-card-body>

@@ -4,6 +4,7 @@
       <c-col lg="7" md="9" xl="6">
         <c-card class="mx-4">
           <c-card-body class="p-4">
+            <c-alert color="danger" *ngIf="registerFailed">Something went wrong</c-alert>
             <form cForm [formGroup]="registerForm" (ngSubmit)="register()">
               <h1>Register</h1>
               <p class="text-medium-emphasis">Create your account</p>

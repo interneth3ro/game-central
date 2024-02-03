@@ -6,26 +6,27 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
-import { ButtonModule, CardModule, FormModule, GridModule } from '@coreui/angular';
+import {
+  AlertModule,
+  ButtonModule,
+  CardModule,
+  FormModule,
+  GridModule,
+} from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
 
-
 @NgModule({
-  declarations: [
-    LoginComponent,
-    RegisterComponent,
-    ChangePasswordComponent,
-  ],
+  declarations: [LoginComponent, RegisterComponent, ChangePasswordComponent],
   imports: [
     CommonModule,
     PagesRoutingModule,
+    AlertModule,
     CardModule,
     ButtonModule,
     GridModule,
     IconModule,
     FormModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+  ],
 })
-export class PagesModule {
-}
+export class PagesModule {}
