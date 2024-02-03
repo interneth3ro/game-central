@@ -17,10 +17,6 @@ import { CurrentUser } from 'src/app/store/auth/state';
 })
 export class DefaultHeaderComponent extends HeaderComponent {
   @Input() sidebarId: string = 'sidebar';
-
-  public newMessages = new Array(4);
-  public newTasks = new Array(5);
-  public newNotifications = new Array(5);
   public isLoggedIn: boolean = false;
   public currentUser: CurrentUser | null = null;
 
