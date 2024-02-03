@@ -63,7 +63,6 @@ const routes: Routes = [
   },
   {
     path: 'change-password',
-    canActivate: [authGuard],
     component: ChangePasswordComponent,
     data: {
       title: 'Change Password',

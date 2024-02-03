@@ -12,6 +12,7 @@ interface HistoryItem {
   wager?: number;
   result: string;
   isWin: boolean;
+  payout: number;
 }
 
 @Component({
@@ -47,7 +48,7 @@ export class CoinTossComponent implements OnInit {
     return val.charAt(0).toUpperCase() + val.slice(1);
   }
 
-  onSubmit(): void {
+  onSubmit() {
     this.coinTossed = false;
     const payload: TossModel = {
       userId: this.currentUser?.id,
@@ -56,29 +57,30 @@ export class CoinTossComponent implements OnInit {
       currentStreak: this.currentStreak,
     };
 
-    this.coinTossService.tossCoin(payload).subscribe({
-      next: (response) => {
-        this.coinTossed = true;
-        this.isWin = response.result.isWin;
+    this.coinTossService.tossCoin(payload).subscribe((response) => {
+      this.coinTossed = true;
+      this.isWin = response.result.isWin;
+      this.currentStreak = response.result.currentStreak;
 
-        const historyItem: HistoryItem = {
-          choice: this.capitalize(payload.choice),
-          wager: payload.wager,
-          isWin: response.result.isWin,
-          result: this.capitalize(response.result.flipResult),
-        };
+      const historyItem: HistoryItem = {
+        choice: this.capitalize(payload.choice),
+        wager: payload.wager,
+        isWin: response.result.isWin,
+        result: this.capitalize(response.result.flipResult),
+        payout: response.result.payout,
+      };
 
-        const results = [...this.historyItems];
-        results.unshift(historyItem);
-        if (results.length > 10) {
-          results.pop();
-        }
-        this.historyItems = results;
-        this.store.dispatch(
-          updateTokens({ payload: response.result.currentBalance })
-        );
-      },
-      error: () => {},
+      const results = [...this.historyItems];
+      results.unshift(historyItem);
+      if (results.length > 10) {
+        results.pop();
+      }
+      this.historyItems = results;
+      this.store.dispatch(
+        updateTokens({ payload: response.result.currentBalance })
+      );
     });
+
+    return false;
   }
 }

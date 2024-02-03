@@ -38,7 +38,10 @@
             <div class="d-flex w-100 justify-content-between">
               <p class="mb-1">Your choice: {{item.choice}}</p>
               <p class="mb-1">Result: {{item.result}}</p>
-              <p class="mb-1">You {{ item.isWin ? 'won' : 'lost'}} {{item.wager}} tokens</p>
+              <p class="mb-1" *ngIf="item.isWin">
+                You won {{item.payout}} tokens!
+              </p>
+              <p class="mb-1" *ngIf="!item.isWin">You lost {{item.wager}} token{{(item.wager && item.wager > 1) ? 's' : ''}}. :(</p>
             </div>
           </a>
         </div>
