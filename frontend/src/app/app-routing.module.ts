@@ -41,11 +41,6 @@ const routes: Routes = [
           import('./games/bingo/bingo.module').then((m) => m.BingoModule),
       },
       {
-        path: 'widgets',
-        loadChildren: () =>
-          import('./views/widgets/widgets.module').then((m) => m.WidgetsModule),
-      },
-      {
         path: 'pages',
         loadChildren: () =>
           import('./views/pages/pages.module').then((m) => m.PagesModule),
