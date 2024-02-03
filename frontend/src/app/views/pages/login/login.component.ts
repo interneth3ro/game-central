@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { authResponse } from '../../../store/auth/actions';
 import { selectAuthState } from '../../../store/auth/selectors';
-import { AuthService } from '../../../services/auth-service.service';
+import { AuthService } from '../../../services/auth/auth-service.service';
 
 @Component({
   selector: 'app-login',

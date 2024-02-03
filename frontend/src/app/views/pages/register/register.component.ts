@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { authResponse } from '../../../store/auth/actions';
-import { AuthService } from '../../../services/auth-service.service';
+import { AuthService } from '../../../services/auth/auth-service.service';
 
 @Component({
   selector: 'app-register',

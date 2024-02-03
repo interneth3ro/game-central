@@ -18,4 +18,9 @@ export const loginUser = createAction(
   props<{ payload: AuthResponse }>()
 );
 
+export const updateTokens = createAction(
+  `${prefix} Update Tokens`,
+  props<{ payload: number }>()
+);
+
 export const logout = createAction(`${prefix} Logout`);

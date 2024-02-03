@@ -1,1 +1,48 @@
-<p>coin-toss works!</p>
+<c-row>
+  <c-col xs="12">
+    <p class="display-4">Welcome to Coin Toss!</p>
+  </c-col>
+  <c-col xs="12" lg="6">
+    <c-card>
+      <c-card-body>
+          <form [formGroup]="coinTossForm" (ngSubmit)="onSubmit()" cRow [gutter]="{gy: 2, gx: 3}" class="align-items-center mb-3">
+            <c-col xs="auto">
+              <label cLabel class="visually-hidden" for="wager">Wager</label>
+              <input formControlName="wager" cFormControl id="wager" placeholder="Wager" type="number" />
+            </c-col>
+            <c-col xs="auto">
+              <c-form-check inline>
+                <input formControlName="choice" cFormCheckInput id="heads" name="choice" type="radio" value="heads" />
+                <label cFormCheckLabel for="heads">Heads</label>
+              </c-form-check>
+              <c-form-check inline>
+                <input formControlName="choice" cFormCheckInput id="tails" name="choice" type="radio" value="tails" />
+                <label cFormCheckLabel for="tails">Tails</label>
+              </c-form-check>
+            </c-col>
+            <c-col xs="auto">
+              <button cButton type="submit">Flip the coin!</button>
+            </c-col>
+          </form>
+          <c-alert color="success" *ngIf="coinTossed && isWin"><span class="h3">You won!</span></c-alert>
+          <c-alert color="danger" *ngIf="coinTossed && !isWin"><span class="h3">You lost</span></c-alert>        
+      </c-card-body>
+    </c-card>
+  </c-col>
+  <c-col xs="12" lg="6">
+    <c-card>
+      <c-card-header>Your last 10 rolls:</c-card-header>
+      <c-card-body>
+        <div cListGroup>
+          <a cListGroupItem href *ngFor="let item of historyItems">
+            <div class="d-flex w-100 justify-content-between">
+              <p class="mb-1">Your choice: {{item.choice}}</p>
+              <p class="mb-1">Result: {{item.result}}</p>
+              <p class="mb-1">You {{ item.isWin ? 'won' : 'lost'}} {{item.wager}} tokens</p>
+            </div>
+          </a>
+        </div>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>

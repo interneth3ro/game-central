@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { selectCurrentUser } from '../../../store/auth/selectors';
 import { CurrentUser } from '../../../store/auth/state';
-import { AuthService } from '../../../services/auth-service.service';
+import { AuthService } from '../../../services/auth/auth-service.service';
 
 @Component({
   selector: 'app-change-password',

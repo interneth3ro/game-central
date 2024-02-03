@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { AuthState } from './state';
-import { loginUser, authResponse, logout } from './actions';
+import { loginUser, authResponse, logout, updateTokens } from './actions';
 import { jwtDecode } from 'jwt-decode';
 
 export const initialAuthState: AuthState = {
@@ -53,6 +53,19 @@ const reducer = createReducer<AuthState>(
       ...state,
       isLoggedIn: false,
       currentUser: null,
+    };
+  }),
+  on(updateTokens, (state, { payload }) => {
+    const profile = JSON.parse(localStorage.getItem('profile') || '');
+    profile.currentBalance = payload;
+    localStorage.setItem('profile', JSON.stringify(profile));
+
+    return {
+      ...state,
+      currentUser: {
+        ...state.currentUser,
+        tokens: payload,
+      },
     };
   })
 );

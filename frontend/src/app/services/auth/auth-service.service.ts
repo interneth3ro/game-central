@@ -5,9 +5,9 @@ import {
   AuthResponse,
   RegisterRequest,
   ChangePassword,
-} from '../models/auth/auth.models';
+} from '../../models/auth/auth.models';
 import { select, Store } from '@ngrx/store';
-import { selectIsLoggedIn } from '../store/auth/selectors';
+import { selectIsLoggedIn } from '../../store/auth/selectors';
 import { Observable } from 'rxjs';
 
 const BASE_URL: string = 'http://localhost:5000/api/user';
