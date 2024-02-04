@@ -5,27 +5,27 @@
   <c-col xs="12" lg="6">
     <c-card>
       <c-card-body>
-          <form [formGroup]="coinTossForm" (ngSubmit)="onSubmit()" cRow [gutter]="{gy: 2, gx: 3}" class="align-items-center mb-3">
-            <c-col xs="auto">
-              <label cLabel class="visually-hidden" for="wager">Wager</label>
-              <input formControlName="wager" cFormControl id="wager" placeholder="Wager" type="number" />
-            </c-col>
-            <c-col xs="auto">
-              <c-form-check inline>
-                <input formControlName="choice" cFormCheckInput id="heads" name="choice" type="radio" value="heads" />
-                <label cFormCheckLabel for="heads">Heads</label>
-              </c-form-check>
-              <c-form-check inline>
-                <input formControlName="choice" cFormCheckInput id="tails" name="choice" type="radio" value="tails" />
-                <label cFormCheckLabel for="tails">Tails</label>
-              </c-form-check>
-            </c-col>
-            <c-col xs="auto">
-              <button cButton type="submit">Flip the coin!</button>
-            </c-col>
-          </form>
-          <c-alert color="success" *ngIf="coinTossed && isWin"><span class="h3">You won!</span></c-alert>
-          <c-alert color="danger" *ngIf="coinTossed && !isWin"><span class="h3">You lost</span></c-alert>        
+        <form [formGroup]="coinTossForm" (ngSubmit)="onSubmit()" cRow [gutter]="{gy: 2, gx: 3}" class="align-items-center mb-3">
+          <c-col xs="auto">
+            <label cLabel class="visually-hidden" for="wager">Wager</label>
+            <input formControlName="wager" cFormControl id="wager" placeholder="Wager" type="number" />
+          </c-col>
+          <c-col xs="auto">
+            <c-form-check inline>
+              <input formControlName="choice" cFormCheckInput id="heads" name="choice" type="radio" value="heads" />
+              <label cFormCheckLabel for="heads">Heads</label>
+            </c-form-check>
+            <c-form-check inline>
+              <input formControlName="choice" cFormCheckInput id="tails" name="choice" type="radio" value="tails" />
+              <label cFormCheckLabel for="tails">Tails</label>
+            </c-form-check>
+          </c-col>
+          <c-col xs="auto">
+            <button cButton type="submit">Flip the coin!</button>
+          </c-col>
+        </form>
+        <c-alert color="success" *ngIf="coinTossed && isWin"><span class="h3">You won!</span></c-alert>
+        <c-alert color="danger" *ngIf="coinTossed && !isWin"><span class="h3">You lost</span></c-alert>
       </c-card-body>
     </c-card>
   </c-col>
