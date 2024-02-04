@@ -127,6 +127,7 @@ export class BingoComponent implements OnInit, OnDestroy {
   callBingo(): void {
     this.timerService.stop();
     this.bingoCalled = true;
+
     if (!this.validateSelections()) {
       this.hasInvalidSelections = true;
     } else {

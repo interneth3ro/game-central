@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { every, forEach, range, shuffle, take } from 'lodash-es';
+import { range, shuffle, take } from 'lodash-es';
 import { BingoCell } from '../../../models/bingo/bingo.models';
 
 @Injectable({
@@ -15,26 +15,23 @@ export class BingoService {
   checkWin(selected: string[]): boolean {
     let result = false;
 
-    const winConditions: string[][] = [
-      // columns
+    const winConditions = [
+      ['B1', 'I1', 'N1', 'G1', 'O1'],
+      ['B2', 'I2', 'N2', 'G2', 'O2'],
+      ['B3', 'I3', 'N3', 'G3', 'O3'],
+      ['B4', 'I4', 'N4', 'G4', 'O4'],
+      ['B5', 'I5', 'N5', 'G5', 'O5'],
       ['B1', 'B2', 'B3', 'B4', 'B5'],
       ['I1', 'I2', 'I3', 'I4', 'I5'],
       ['N1', 'N2', 'N3', 'N4', 'N5'],
       ['G1', 'G2', 'G3', 'G4', 'G5'],
       ['O1', 'O2', 'O3', 'O4', 'O5'],
-      // rows
-      ['B1', 'I1', 'N1', 'G1', 'O1'],
-      ['B2', 'I2', 'I3', 'I4', 'I5'],
-      ['B3', 'I3', 'N3', 'G3', 'O5'],
-      ['B4', 'I4', 'N4', 'G4', 'O4'],
-      ['B5', 'I5', 'N5', 'G5', 'O5'],
-      // diagonal
       ['B1', 'I2', 'N3', 'G4', 'O5'],
       ['B5', 'I4', 'N3', 'G2', 'O1'],
     ];
 
     winConditions.forEach((winCon) => {
-      if (selected.every((n) => winCon.includes(n))) {
+      if (winCon.every((n) => selected.includes(n))) {
         result = true;
       }
     });
@@ -54,7 +51,7 @@ export class BingoService {
 
     // return array of arrays organized into rows for easier rendering
     const card: BingoCell[][] = [];
-    forEach(range(5), (i: number) => {
+    [0, 1, 2, 3, 4].forEach((i: number) => {
       const row: BingoCell[] = [
         {
           id: `B${i + 1}`,

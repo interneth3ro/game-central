@@ -9,8 +9,8 @@
               <h1 *ngIf="gameStarted && currentCalledNumber !== ''">Last Called Number: <c-badge color="secondary">{{currentCalledNumber}}</c-badge></h1>
               <h1 *ngIf="gameStarted && currentCalledNumber === ''">Get Ready...</h1>
               <c-alert color="success" *ngIf="bingoCalled && !hasInvalidSelections && isWinner"><span class="h3">You won!</span></c-alert>
-              <c-alert color="danger" *ngIf="bingoCalled && hasInvalidSelections"><span class="h3">You have called bingo with invalid selections. Check your selections and click <a (click)="resumeGame()">here</a> to resume playing.</span></c-alert>
-              <c-alert color="danger" *ngIf="bingoCalled && !hasInvalidSelections && !isWinner"><span class="h3">You called bingo but did not win. Check your selections and click <a (click)="resumeGame()">here</a> to resume playing.</span></c-alert>
+              <c-alert color="danger" *ngIf="bingoCalled && hasInvalidSelections"><span class="h3">You have called bingo with invalid selections. Check your selections and click <a class="underline" (click)="resumeGame()">here</a> to resume playing.</span></c-alert>
+              <c-alert color="danger" *ngIf="bingoCalled && !hasInvalidSelections && !isWinner"><span class="h3">You called bingo but did not win. Check your selections and click <a class="underline" (click)="resumeGame()">here</a> to resume playing.</span></c-alert>
               <c-row>
                 <c-col xs="3">
                   <table bordered cTable align="middle">
