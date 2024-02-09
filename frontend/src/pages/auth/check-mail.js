@@ -5,7 +5,6 @@ import { useTheme } from '@mui/material/styles';
 import { Box, Button, Grid, Divider, Typography, useMediaQuery } from '@mui/material';
 
 // project import
-import useAuth from 'hooks/useAuth';
 import AnimateButton from 'components/@extended/AnimateButton';
 import AuthWrapper from 'sections/auth/AuthWrapper';
 
@@ -15,7 +14,8 @@ const CheckMail = () => {
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const { isLoggedIn } = useAuth();
+  // TODO: hook up to redux
+  const isLoggedIn = true;
 
   return (
     <AuthWrapper>

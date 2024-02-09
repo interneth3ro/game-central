@@ -24,7 +24,6 @@ import { Formik } from 'formik';
 import IconButton from 'components/@extended/IconButton';
 import AnimateButton from 'components/@extended/AnimateButton';
 
-import useAuth from 'hooks/useAuth';
 import useScriptRef from 'hooks/useScriptRef';
 import { openSnackbar } from 'api/snackbar';
 import { strengthColor, strengthIndicator } from 'utils/password-strength';
@@ -35,7 +34,8 @@ import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 // ============================|| JWT - REGISTER ||============================ //
 
 const AuthRegister = () => {
-  const { register } = useAuth();
+  // TODO: hook up to redux
+  const register = async () => {};
   const scriptedRef = useScriptRef();
   const navigate = useNavigate();
 

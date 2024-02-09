@@ -23,7 +23,7 @@ import { Formik } from 'formik';
 import { preload } from 'swr';
 
 // project import
-import useAuth from 'hooks/useAuth';
+import useFirebaseAuth from 'hooks/useFirebaseAuth';
 import useScriptRef from 'hooks/useScriptRef';
 import IconButton from 'components/@extended/IconButton';
 import AnimateButton from 'components/@extended/AnimateButton';
@@ -37,7 +37,7 @@ import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 const AuthLogin = ({ isDemo = false }) => {
   const [checked, setChecked] = React.useState(false);
 
-  const { login } = useAuth();
+  const { login } = useFirebaseAuth();
   const scriptedRef = useScriptRef();
 
   const [showPassword, setShowPassword] = React.useState(false);

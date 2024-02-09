@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { Button, FormHelperText, Grid } from '@mui/material';
 
 // project import
-import useAuth from 'hooks/useAuth';
 import useScriptRef from 'hooks/useScriptRef';
 import AnimateButton from 'components/@extended/AnimateButton';
 
@@ -14,7 +13,7 @@ import { LockOutlined } from '@ant-design/icons';
 // ============================|| AUTH0 - LOGIN ||============================ //
 
 const AuthLogin = () => {
-  const { login } = useAuth();
+  const login = async () => {};
   const scriptedRef = useScriptRef();
 
   const [error, setError] = useState(null);

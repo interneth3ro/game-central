@@ -20,7 +20,6 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 
 // project import
-import useAuth from 'hooks/useAuth';
 import useScriptRef from 'hooks/useScriptRef';
 import IconButton from 'components/@extended/IconButton';
 import AnimateButton from 'components/@extended/AnimateButton';
@@ -37,7 +36,8 @@ const AuthResetPassword = () => {
   const scriptedRef = useScriptRef();
   const navigate = useNavigate();
 
-  const { isLoggedIn } = useAuth();
+  // TODO: hook up to redux
+  const isLoggedIn = true;
 
   const [level, setLevel] = useState();
   const [showPassword, setShowPassword] = useState(false);

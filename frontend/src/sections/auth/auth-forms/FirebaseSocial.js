@@ -2,9 +2,6 @@
 import { useTheme } from '@mui/material/styles';
 import { useMediaQuery, Button, Stack } from '@mui/material';
 
-// project import
-import useAuth from 'hooks/useAuth';
-
 // assets
 import Google from 'assets/images/icons/google.svg';
 import Twitter from 'assets/images/icons/twitter.svg';
@@ -16,30 +13,11 @@ const FirebaseSocial = () => {
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const { firebaseFacebookSignIn, firebaseGoogleSignIn, firebaseTwitterSignIn } = useAuth();
-  const googleHandler = async () => {
-    try {
-      await firebaseGoogleSignIn();
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  const googleHandler = async () => {};
 
-  const twitterHandler = async () => {
-    try {
-      await firebaseTwitterSignIn();
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  const twitterHandler = async () => {};
 
-  const facebookHandler = async () => {
-    try {
-      await firebaseFacebookSignIn();
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  const facebookHandler = async () => {};
 
   return (
     <Stack

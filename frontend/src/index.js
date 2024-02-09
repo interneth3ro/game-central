@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistStore } from 'redux-persist';
+
 // scroll bar
 import 'simplebar-react/dist/simplebar.min.css';
 import 'slick-carousel/slick/slick.css';
@@ -36,17 +40,25 @@ import '@fontsource/public-sans/700.css';
 
 // project import
 import App from './App';
+import store from './redux/store';
 import { ConfigProvider } from 'contexts/ConfigContext';
 import reportWebVitals from './reportWebVitals';
 
+const persistor = persistStore(store);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 // ==============================|| MAIN - REACT DOM RENDER ||============================== //
 
 root.render(
-  <ConfigProvider>
-    <App />
-  </ConfigProvider>
+  <React.StrictMode>
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <ConfigProvider>
+          <App />
+        </ConfigProvider>
+      </PersistGate>
+    </Provider>
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

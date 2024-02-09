@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 import { Grid, Stack, Typography } from '@mui/material';
 
 // project import
-import useAuth from 'hooks/useAuth';
 import AuthWrapper from 'sections/auth/AuthWrapper';
 import AuthForgotPassword from 'sections/auth/auth-forms/AuthForgotPassword';
 
 // ================================|| FORGOT PASSWORD ||================================ //
 
 const ForgotPassword = () => {
-  const { isLoggedIn } = useAuth();
+  // TODO: hook up to redux
+  const isLoggedIn = true;
 
   return (
     <AuthWrapper>

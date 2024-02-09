@@ -10,7 +10,6 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 
 // project import
-import useAuth from 'hooks/useAuth';
 import useScriptRef from 'hooks/useScriptRef';
 import AnimateButton from 'components/@extended/AnimateButton';
 
@@ -25,7 +24,8 @@ import { ThemeMode } from 'config';
 // ============================|| AWS COGNITO - CODE VERIFICATION ||============================ //
 
 const AuthCodeVerification = () => {
-  const { codeVerification, resendConfirmationCode } = useAuth();
+  const codeVerification = async () => {};
+  const resendConfirmationCode = async () => {};
   const scriptedRef = useScriptRef();
   const theme = useTheme();
   const navigate = useNavigate();

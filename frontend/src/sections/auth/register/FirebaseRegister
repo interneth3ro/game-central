@@ -22,7 +22,6 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 
 // project import
-import useAuth from 'hooks/useAuth';
 import useScriptRef from 'hooks/useScriptRef';
 import IconButton from 'components/@extended/IconButton';
 import AnimateButton from 'components/@extended/AnimateButton';
@@ -35,7 +34,7 @@ import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 // ============================|| FIREBASE - REGISTER ||============================ //
 
 const AuthRegister = () => {
-  const { firebaseRegister } = useAuth();
+  const firebaseRegister = async () => {};
   const scriptedRef = useScriptRef();
 
   const [level, setLevel] = useState();

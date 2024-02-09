@@ -1,34 +1,14 @@
-import PropTypes from 'prop-types';
-import { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-
-// project import
-import { APP_DEFAULT_PATH } from 'config';
-import useAuth from 'hooks/useAuth';
-
-// ==============================|| GUEST GUARD ||============================== //
+import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 
 const GuestGuard = ({ children }) => {
-  const { isLoggedIn } = useAuth();
-  const navigate = useNavigate();
-  const location = useLocation();
+  const user = useSelector(({ userSlice }) => userSlice.user);
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate(location?.state?.from ? location?.state?.from : APP_DEFAULT_PATH, {
-        state: {
-          from: ''
-        },
-        replace: true
-      });
-    }
-  }, [isLoggedIn, navigate, location]);
+  if (user?.email) {
+    return <Navigate to="/" />;
+  }
 
-  return children;
-};
-
-GuestGuard.propTypes = {
-  children: PropTypes.node
+  return <div>{children}</div>;
 };
 
 export default GuestGuard;

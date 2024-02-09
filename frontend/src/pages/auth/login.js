@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 import { Grid, Stack, Typography } from '@mui/material';
 
 // project import
-import useAuth from 'hooks/useAuth';
 import AuthWrapper from 'sections/auth/AuthWrapper';
 import AuthLogin from 'sections/auth/auth-forms/AuthLogin';
 
 // ================================|| LOGIN ||================================ //
 
 const Login = () => {
-  const { isLoggedIn } = useAuth();
+  // TODO: hook up to redux
+  const isLoggedIn = true;
 
   return (
     <AuthWrapper>

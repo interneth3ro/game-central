@@ -7,7 +7,6 @@ import { Box, IconButton, List, ListItem, ListItemAvatar, ListItemText, Menu, Me
 
 // project import
 import Avatar from 'components/@extended/Avatar';
-import useAuth from 'hooks/useAuth';
 import { useGetMenuMaster } from 'api/menu';
 
 // assets
@@ -40,7 +39,9 @@ const NavUser = () => {
   const { menuMaster } = useGetMenuMaster();
   const drawerOpen = menuMaster.isDashboardDrawerOpened;
 
-  const { logout, user } = useAuth();
+  // TODO: hook up to redux
+  const logout = async () => {};
+  const user = null;
   const handleLogout = async () => {
     try {
       await logout();

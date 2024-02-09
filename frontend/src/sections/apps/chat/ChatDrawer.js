@@ -30,7 +30,6 @@ import IconButton from 'components/@extended/IconButton';
 import SimpleBar from 'components/third-party/SimpleBar';
 
 import { ThemeMode } from 'config';
-import useAuth from 'hooks/useAuth';
 
 // assets
 import {
@@ -47,7 +46,8 @@ import {
 
 function ChatDrawer({ handleDrawerOpen, openChatDrawer, setUser, selectedUser }) {
   const theme = useTheme();
-  const { user } = useAuth();
+  // TODO: hook up to redux
+  const user = null;
 
   const matchDownLG = useMediaQuery(theme.breakpoints.down('lg'));
   const drawerBG = theme.palette.mode === ThemeMode.DARK ? 'dark.main' : 'white';

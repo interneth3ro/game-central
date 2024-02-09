@@ -8,7 +8,6 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 
 // project import
-import useAuth from 'hooks/useAuth';
 import useScriptRef from 'hooks/useScriptRef';
 import AnimateButton from 'components/@extended/AnimateButton';
 import { openSnackbar } from 'api/snackbar';
@@ -19,7 +18,9 @@ const AuthForgotPassword = () => {
   const scriptedRef = useScriptRef();
   const navigate = useNavigate();
 
-  const { isLoggedIn, resetPassword } = useAuth();
+  // TODO: hook up to redux
+  const isLoggedIn = true;
+  const resetPassword = async () => {};
 
   return (
     <>

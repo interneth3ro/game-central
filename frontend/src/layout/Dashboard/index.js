@@ -13,7 +13,6 @@ import HorizontalBar from './Drawer/HorizontalBar';
 import Loader from 'components/Loader';
 import Breadcrumbs from 'components/@extended/Breadcrumbs';
 import AddCustomer from 'sections/apps/customer/AddCustomer';
-import AuthGuard from 'utils/route-guard/AuthGuard';
 
 import useConfig from 'hooks/useConfig';
 import { handlerDrawerOpen, useGetMenuMaster } from 'api/menu';
@@ -43,31 +42,29 @@ const DashboardLayout = () => {
   if (menuMasterLoading) return <Loader />;
 
   return (
-    <AuthGuard>
-      <Box sx={{ display: 'flex', width: '100%' }}>
-        <Header />
-        {!isHorizontal ? <Drawer /> : <HorizontalBar />}
+    <Box sx={{ display: 'flex', width: '100%' }}>
+      <Header />
+      {!isHorizontal ? <Drawer /> : <HorizontalBar />}
 
-        <Box component="main" sx={{ width: 'calc(100% - 260px)', flexGrow: 1, p: { xs: 2, sm: 3 } }}>
-          <Toolbar sx={{ mt: isHorizontal ? 8 : 'inherit' }} />
-          <Container
-            maxWidth={container ? 'xl' : false}
-            sx={{
-              ...(container && { px: { xs: 0, sm: 2 } }),
-              position: 'relative',
-              minHeight: 'calc(100vh - 110px)',
-              display: 'flex',
-              flexDirection: 'column'
-            }}
-          >
-            <Breadcrumbs />
-            <Outlet />
-            <Footer />
-          </Container>
-        </Box>
-        <AddCustomer />
+      <Box component="main" sx={{ width: 'calc(100% - 260px)', flexGrow: 1, p: { xs: 2, sm: 3 } }}>
+        <Toolbar sx={{ mt: isHorizontal ? 8 : 'inherit' }} />
+        <Container
+          maxWidth={container ? 'xl' : false}
+          sx={{
+            ...(container && { px: { xs: 0, sm: 2 } }),
+            position: 'relative',
+            minHeight: 'calc(100vh - 110px)',
+            display: 'flex',
+            flexDirection: 'column'
+          }}
+        >
+          <Breadcrumbs />
+          <Outlet />
+          <Footer />
+        </Container>
       </Box>
-    </AuthGuard>
+      <AddCustomer />
+    </Box>
   );
 };
 

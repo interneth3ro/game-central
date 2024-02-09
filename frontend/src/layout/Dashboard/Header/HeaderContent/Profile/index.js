@@ -14,7 +14,6 @@ import MainCard from 'components/MainCard';
 import Transitions from 'components/@extended/Transitions';
 import IconButton from 'components/@extended/IconButton';
 
-import useAuth from 'hooks/useAuth';
 import { ThemeMode } from 'config';
 
 // assets
@@ -49,7 +48,10 @@ const Profile = () => {
   const theme = useTheme();
   const navigate = useNavigate();
 
-  const { logout, user } = useAuth();
+  // TODO: hook up to redux
+  const logout = async () => {};
+  const user = null;
+
   const handleLogout = async () => {
     try {
       await logout();

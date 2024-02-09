@@ -21,7 +21,6 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 
 // project import
-import useAuth from 'hooks/useAuth';
 import useScriptRef from 'hooks/useScriptRef';
 import IconButton from 'components/@extended/IconButton';
 import AnimateButton from 'components/@extended/AnimateButton';
@@ -37,7 +36,7 @@ const AuthLogin = () => {
   const [checked, setChecked] = React.useState(false);
   const [verification, setVerification] = React.useState(false);
 
-  const { login } = useAuth();
+  const login = async () => {};
   const scriptedRef = useScriptRef();
 
   const [showPassword, setShowPassword] = React.useState(false);
