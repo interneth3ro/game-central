@@ -1,0 +1,52 @@
+<c-container>
+  <c-row ngPreserveWhitespace class="justify-content-md-center">
+    <c-col xs="12">
+      <c-card class="mb-4">
+        <c-card-body>
+          <c-row>
+            <c-col xs="12">
+              <button *ngIf="!gameStarted" cButton class="mb-3" color="primary" size="lg" (click)="startGame()">Start Game!</button>
+              <h1 *ngIf="gameStarted && currentCalledNumber !== ''">Last Called Number: <c-badge color="secondary">{{currentCalledNumber}}</c-badge></h1>
+              <h1 *ngIf="gameStarted && currentCalledNumber === ''">Get Ready...</h1>
+              <c-alert color="success" *ngIf="bingoCalled && !hasInvalidSelections && isWinner"><span class="h3">You won!</span></c-alert>
+              <c-alert color="danger" *ngIf="bingoCalled && hasInvalidSelections"><span class="h3">You have called bingo with invalid selections. Check your selections and click <a class="underline" (click)="resumeGame()">here</a> to resume playing.</span></c-alert>
+              <c-alert color="danger" *ngIf="bingoCalled && !hasInvalidSelections && !isWinner"><span class="h3">You called bingo but did not win. Check your selections and click <a class="underline" (click)="resumeGame()">here</a> to resume playing.</span></c-alert>
+              <c-row>
+                <c-col xs="3">
+                  <table bordered cTable align="middle">
+                    <thead>
+                      <tr>
+                        <td class="bingo-cell"><strong>B</strong></td>
+                        <td class="bingo-cell"><strong>I</strong></td>
+                        <td class="bingo-cell"><strong>N</strong></td>
+                        <td class="bingo-cell"><strong>G</strong></td>
+                        <td class="bingo-cell"><strong>O</strong></td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let row of cardValues">
+                        <td class="bingo-cell" [cTableActive]="cell.selected" *ngFor="let cell of row" (click)="selectCell(cell)" [ngClass]="{'clickable': !cell.selected && cell.value !== 'FREE'}"><p>{{cell.value}}</p></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button *ngIf="gameStarted" cButton class="mb-3 mr-5" color="success" size="lg" (click)="callBingo()">BINGO!</button>
+                  <button *ngIf="gameStarted" cButton class="mb-3" color="danger" size="lg" (click)="stopGame()">Stop Game</button>
+                </c-col>
+                <c-col xs="3">
+                  <c-card>
+                    <c-card-header>Call History</c-card-header>
+                    <c-card-body>
+                      <ul class="history" cListGroup flush>
+                        <li cListGroupItem *ngFor="let item of calledNumbers">{{item}}</li>
+                      </ul>
+                    </c-card-body>
+                  </c-card>
+                </c-col>
+              </c-row>
+            </c-col>
+          </c-row>
+        </c-card-body>
+      </c-card>
+    </c-col>
+  </c-row>
+</c-container>

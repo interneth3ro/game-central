@@ -1,0 +1,31 @@
+table {
+  table-layout: fixed;
+  width: 300px;
+}
+
+.bingo-cell {
+  width: 10px;
+  height: 10px;
+  text-align: center;
+
+  p {
+    margin-bottom: 0px;
+  }
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.mr-5 {
+  margin-right: 5px;
+}
+
+.history {
+  max-height: 300px;
+  overflow: scroll;
+}
+
+.underline {
+  text-decoration: underline;
+}
