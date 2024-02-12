@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { select, Store } from '@ngrx/store';
-import { authResponse } from '../../../store/auth/actions';
-import { selectAuthState } from '../../../store/auth/selectors';
-import { AuthService } from '../../../services/auth/auth-service.service';
+import { Store } from '@ngrx/store';
+
+import { AuthService } from '../../../services/auth/auth.service';
+import { UserService } from '../../../services/user/user.service';
+import { loginUser } from '../../../store/auth/actions';
+import { LoginRequest, LoginResponse } from '../../../models/auth/auth.models';
+import { GetUserResult } from '../../../models/user/user.model';
 
 @Component({
   selector: 'app-login',
@@ -22,30 +25,34 @@ export class LoginComponent implements OnInit {
   constructor(
     private readonly store: Store,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private userService: UserService
   ) {}
 
-  ngOnInit(): void {
-    this.store.pipe(select(selectAuthState)).subscribe((auth) => {
-      if (auth.isLoggedIn) {
-        this.router.navigate(['/']);
-      }
-    });
-  }
+  ngOnInit(): void {}
 
-  login() {
-    const credentials = {
+  async login() {
+    const credentials: LoginRequest = {
       email: this.loginForm.get('email')?.value,
       password: this.loginForm.get('password')?.value,
     };
 
-    this.authService.login(credentials).subscribe({
-      next: (result) => {
-        this.store.dispatch(authResponse({ payload: result }));
-      },
-      error: () => {
-        this.loginFailed = true;
-      },
-    });
+    const loginResponse: LoginResponse = await this.authService.login(
+      credentials
+    );
+    if (loginResponse.userId !== '') {
+      const userResult: GetUserResult = await this.userService.getUserById(
+        loginResponse.userId
+      );
+
+      if (userResult.user !== null) {
+        this.store.dispatch(loginUser({ payload: userResult.user }));
+        this.router.navigate(['/']);
+      } else {
+        console.log(loginResponse.error);
+      }
+    } else {
+      console.log(loginResponse.error);
+    }
   }
 }

@@ -9,7 +9,7 @@ import {
 } from '../../../store/auth/selectors';
 import { logout } from '../../../store/auth/actions';
 import { Router } from '@angular/router';
-import { CurrentUser } from 'src/app/store/auth/state';
+import { User } from '../../../models/user/user.model';
 
 @Component({
   selector: 'app-default-header',
@@ -18,7 +18,7 @@ import { CurrentUser } from 'src/app/store/auth/state';
 export class DefaultHeaderComponent extends HeaderComponent {
   @Input() sidebarId: string = 'sidebar';
   public isLoggedIn: boolean = false;
-  public currentUser: CurrentUser | null = null;
+  public currentUser: User | null = null;
 
   constructor(
     private classToggler: ClassToggleService,

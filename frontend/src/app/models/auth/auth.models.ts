@@ -3,27 +3,17 @@ export interface LoginRequest {
   password: string;
 }
 
-export interface AuthResponse {
-  token: string;
-  currentBalance: number;
+export interface LoginResponse {
+  userId: string;
+  error: unknown;
 }
 
 export interface RegisterRequest {
-  firstName: string;
-  lastName: string;
   email: string;
   password: string;
-  confirmPassword: string;
 }
 
-export interface ChangePassword {
-  email?: string;
-  oldPassword?: string;
-  newPassword?: string;
-}
-
-export interface AuthUser {
-  email: string;
-  name: string;
-  tokens: number;
+export interface RegisterResponse {
+  userId: string;
+  error: unknown;
 }

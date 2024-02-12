@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "game-central-874be": {
+      "hosting": {
+        "coreui-free-angular-admin-template": [
+          "game-central-874be"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "game-central-874be"
+  }
+}

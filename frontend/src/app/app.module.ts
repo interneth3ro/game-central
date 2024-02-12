@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core';
-import {
-  HashLocationStrategy,
-  LocationStrategy,
-  PathLocationStrategy,
-} from '@angular/common';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { NgScrollbarModule } from 'ngx-scrollbar';
+
+import { environment } from '../environments/environment';
 
 // Import NGRX
 import { StoreModule } from '@ngrx/store';
@@ -55,6 +53,24 @@ import {
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import {
+  getAnalytics,
+  provideAnalytics,
+  ScreenTrackingService,
+  UserTrackingService,
+} from '@angular/fire/analytics';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { getDatabase, provideDatabase } from '@angular/fire/database';
+import { getFunctions, provideFunctions } from '@angular/fire/functions';
+import { getMessaging, provideMessaging } from '@angular/fire/messaging';
+import { getPerformance, providePerformance } from '@angular/fire/performance';
+import { getStorage, provideStorage } from '@angular/fire/storage';
+import {
+  getRemoteConfig,
+  provideRemoteConfig,
+} from '@angular/fire/remote-config';
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -97,6 +113,16 @@ const APP_CONTAINERS = [
     EffectsModule.forRoot(),
     StoreDevtoolsModule.instrument({}),
     AuthStoreModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideAnalytics(() => getAnalytics()),
+    provideFirestore(() => getFirestore()),
+    provideDatabase(() => getDatabase()),
+    provideFunctions(() => getFunctions()),
+    provideMessaging(() => getMessaging()),
+    providePerformance(() => getPerformance()),
+    provideStorage(() => getStorage()),
+    provideRemoteConfig(() => getRemoteConfig()),
   ],
   providers: [
     {
@@ -110,6 +136,8 @@ const APP_CONTAINERS = [
     },
     IconSetService,
     Title,
+    ScreenTrackingService,
+    UserTrackingService,
   ],
   bootstrap: [AppComponent],
 })

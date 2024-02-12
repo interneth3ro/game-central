@@ -3,8 +3,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { selectCurrentUser } from '../../../store/auth/selectors';
-import { CurrentUser } from '../../../store/auth/state';
-import { AuthService } from '../../../services/auth/auth-service.service';
+import { User } from '../../../models/user/user.model';
+import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-change-password',
@@ -17,7 +17,7 @@ export class ChangePasswordComponent implements OnInit {
     newPassword: new FormControl(''),
   });
 
-  public currentUser: CurrentUser | null = null;
+  public currentUser: User | null = null;
   changePasswordFailed: boolean = false;
 
   constructor(
@@ -34,18 +34,9 @@ export class ChangePasswordComponent implements OnInit {
 
   changePassword() {
     const payload = {
-      email: this.currentUser?.email,
+      email: this.currentUser?.emailAddress,
       oldPassword: this.changePasswordForm.get('oldPassword')?.value,
       newPassword: this.changePasswordForm.get('newPassword')?.value,
     };
-
-    this.authService.changePassword(payload).subscribe({
-      next: () => {
-        this.router.navigate(['/']);
-      },
-      error: () => {
-        this.changePasswordFailed = true;
-      },
-    });
   }
 }

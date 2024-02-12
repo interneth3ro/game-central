@@ -108,6 +108,23 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "coreui-free-angular-admin-template:build:production",
+              "serveTarget": "coreui-free-angular-admin-template:serve:production"
+            },
+            "development": {
+              "buildTarget": "coreui-free-angular-admin-template:build:development",
+              "serveTarget": "coreui-free-angular-admin-template:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

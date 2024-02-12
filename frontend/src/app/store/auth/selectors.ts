@@ -6,10 +6,6 @@ export const selectIsLoggedIn = createSelector(
   selectAuthState,
   (state) => state.isLoggedIn
 );
-export const selectPasswordChanged = createSelector(
-  selectAuthState,
-  (state) => state.passwordChanged
-);
 export const selectCurrentUser = createSelector(
   selectAuthState,
   (state) => state.currentUser

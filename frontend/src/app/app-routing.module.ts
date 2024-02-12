@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { DefaultLayoutComponent } from './containers';
 import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
-import { authGuard } from './guards/auth-guard';
 import { ChangePasswordComponent } from './views/pages/change-password/change-password.component';
 
 const routes: Routes = [
@@ -22,17 +21,9 @@ const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        canActivate: [authGuard],
         loadChildren: () =>
           import('./views/dashboard/dashboard.module').then(
             (m) => m.DashboardModule
-          ),
-      },
-      {
-        path: 'coin-toss',
-        loadChildren: () =>
-          import('./games/coin-toss/coin-toss.module').then(
-            (m) => m.CoinTossModule
           ),
       },
       {

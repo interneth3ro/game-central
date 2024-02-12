@@ -11,11 +11,6 @@ export const navItems: INavData[] = [
     name: 'Games',
   },
   {
-    name: 'Coin Toss',
-    url: '/coin-toss',
-    iconComponent: { name: 'cil-opentype' },
-  },
-  {
     name: 'Bingo',
     url: '/bingo',
     iconComponent: { name: 'cil-grid' },

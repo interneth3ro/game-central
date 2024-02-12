@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
 import { selectCurrentUser } from '../../store/auth/selectors';
-import { updateTokens } from '../../store/auth/actions';
 import { CoinTossService } from '../../services/games/coin-toss/coin-toss.service';
-import { CurrentUser } from '../../store/auth/state';
+import { User } from '../../models/user/user.model';
 import { TossModel, TossResult } from 'src/app/models/coin-toss/toss-model';
 
 interface HistoryItem {
@@ -21,7 +20,7 @@ interface HistoryItem {
   styleUrl: './coin-toss.component.scss',
 })
 export class CoinTossComponent implements OnInit {
-  public currentUser: CurrentUser | null = null;
+  public currentUser: User | null = null;
   public currentStreak: number = 0;
   public isWin: boolean = false;
   public coinTossed: boolean = false;
@@ -51,7 +50,7 @@ export class CoinTossComponent implements OnInit {
   onSubmit() {
     this.coinTossed = false;
     const payload: TossModel = {
-      userId: this.currentUser?.id,
+      userId: this.currentUser?.userId,
       wager: this.coinTossForm.get('wager')?.value,
       choice: this.coinTossForm.get('choice')?.value,
       currentStreak: this.currentStreak,
@@ -76,9 +75,9 @@ export class CoinTossComponent implements OnInit {
         results.pop();
       }
       this.historyItems = results;
-      this.store.dispatch(
-        updateTokens({ payload: response.result.currentBalance })
-      );
+      // this.store.dispatch(
+      //   updateTokens({ payload: response.result.currentBalance })
+      // );
     });
 
     return false;
