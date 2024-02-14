@@ -23,6 +23,7 @@ export class BingoComponent implements OnInit, OnDestroy {
   public hasInvalidSelections: boolean = false;
 
   private subscription: Subscription = new Subscription();
+  private socketSubscription: Subscription = new Subscription();
 
   constructor(
     private bingoService: BingoService,
@@ -30,6 +31,12 @@ export class BingoComponent implements OnInit, OnDestroy {
   ) {
     this.subscription.add(
       this.timerService.stopWatch$.subscribe(() => this.callNumber())
+    );
+
+    this.socketSubscription.add(
+      this.bingoService.getMessage().subscribe((message: string) => {
+        console.log(message);
+      })
     );
   }
 
@@ -116,12 +123,14 @@ export class BingoComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    this.socketSubscription.unsubscribe();
   }
 
   startGame(): void {
-    this.gameStarted = true;
-    this.selectedCells.push('N3'); // FREE space
-    this.timerService.start();
+    this.bingoService.sendMessage('test from component');
+    // this.gameStarted = true;
+    // this.selectedCells.push('N3'); // FREE space
+    // this.timerService.start();
   }
 
   callBingo(): void {

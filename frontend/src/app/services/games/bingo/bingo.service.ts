@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { range, shuffle, take } from 'lodash-es';
 import { BingoCell } from '../../../models/bingo/bingo.models';
+import { io } from 'socket.io-client';
 
 @Injectable({
   providedIn: 'root',
@@ -8,9 +10,25 @@ import { BingoCell } from '../../../models/bingo/bingo.models';
 export class BingoService {
   constructor() {}
 
+  public messages$: BehaviorSubject<string> = new BehaviorSubject('');
+  private socket = io('http://localhost:8080/bingo', {
+    query: { room: 'lobby' },
+  });
+
   private compare(a: number, b: number): number {
     return a - b;
   }
+
+  public getMessage = (): Observable<string> => {
+    this.socket.on('message', (message) => {
+      this.messages$.next(message);
+    });
+    return this.messages$.asObservable();
+  };
+
+  public sendMessage = (message: string): void => {
+    this.socket.emit('chat:message', message);
+  };
 
   checkWin(selected: string[]): boolean {
     let result = false;
