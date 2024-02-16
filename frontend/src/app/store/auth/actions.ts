@@ -5,7 +5,7 @@ const prefix = '[ Auth ]';
 
 export const loginUser = createAction(
   `${prefix} Login User`,
-  props<{ payload: User }>()
+  props<{ payload: User | null }>()
 );
 
 export const logout = createAction(`${prefix} Logout`);
